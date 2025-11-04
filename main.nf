@@ -52,7 +52,7 @@ workflow{
     //
 
     fix_word_doc(
-        ch_input.map{ meta, file } -> { meta, file }
+        ch_input.map{ meta, file -> [meta, file] }
     )
     ch_versions = ch_versions.mix(fix_word_doc.out.versions)
 
