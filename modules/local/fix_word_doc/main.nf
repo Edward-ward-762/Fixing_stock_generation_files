@@ -13,6 +13,6 @@ process fix_word_doc{
 
     script:
     """
-    python3 fix_word_doc.py --input $file --output "${file.baseName}_fixed.docx" --process_name $task.process
+    python3 bin/fix_word_doc.py --input $file --output "${file.baseName}_fixed.docx" --process_name $task.process
     """
 }
