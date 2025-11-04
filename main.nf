@@ -13,7 +13,7 @@
 */
 
 include { fix_word_doc           } from './modules/local/fix_word_doc/main.nf'
-include { DUMP_SOFTWARE_VERSIONS } from './modules/local/dump_software_versions.nf'
+//include { DUMP_SOFTWARE_VERSIONS } from './modules/local/dump_software_versions.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -54,7 +54,7 @@ workflow{
     fix_word_doc(
         ch_input.map{ meta, file -> [meta, file] }
     )
-    ch_versions = ch_versions.mix(fix_word_doc.out.versions)
+    //ch_versions = ch_versions.mix(fix_word_doc.out.versions)
 
     //
     // ****************************
@@ -68,9 +68,11 @@ workflow{
     // MODULE: Collect software versions
     //
     
+    /*
     DUMP_SOFTWARE_VERSIONS (
         ch_versions.unique().collectFile()
-    )    
+    )
+    */   
 }
 
 /*

@@ -3,6 +3,7 @@
 from docx import Document
 import argparse
 
+"""
 def dump_versions(process_name):
     """
     Dump the current Python version into a 'versions.yml' file.
@@ -15,7 +16,7 @@ def dump_versions(process_name):
     with open("versions.yml", "w", encoding="UTF-8") as out_f:
         out_f.write(process_name + ":\n")
         out_f.write("    python: " + platform.python_version() + "\n")
-
+"""
 
 def replace_text_in_paragraph(paragraph, key, value):
     if key in paragraph.text:
@@ -45,4 +46,6 @@ if __name__ == "__main__":
 
     document.save(args.output)
 
+"""
     dump_versions(args.process_name)
+"""
