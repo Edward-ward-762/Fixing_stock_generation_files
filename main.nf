@@ -31,7 +31,7 @@ workflow{
     // ****************************
     //
 
-    ch_input = Channel.fromPath(inputFile)
+    ch_input = Channel.fromPath(params.inputFile)
                         .splitCsv(header: true)
                         .map { row ->
                             [[id: row.file_id],row.file_path]
@@ -52,7 +52,7 @@ workflow{
     //
 
     fix_word_doc(
-        ch_input.map{ meta, file } -> { meta, file }
+        ch_input.map{ meta, file -> [meta, file] }
     )
     ch_versions = ch_versions.mix(fix_word_doc.out.versions)
 
