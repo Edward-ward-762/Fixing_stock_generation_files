@@ -5,14 +5,14 @@ import argparse
 
 """
 def dump_versions(process_name):
-    """
+    
     Dump the current Python version into a 'versions.yml' file.
 
     This function writes the process name and the current Python version into a YAML file named 'versions.yml'.
 
     Parameters:
     - process_name (str): A string representing the name of the process to be included in the file.
-    """
+    
     with open("versions.yml", "w", encoding="UTF-8") as out_f:
         out_f.write(process_name + ":\n")
         out_f.write("    python: " + platform.python_version() + "\n")
