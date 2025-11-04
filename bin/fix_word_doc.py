@@ -1,13 +1,18 @@
 from docx import Document
+import argparse
 
+def dump_versions(process_name):
+    """
+    Dump the current Python version into a 'versions.yml' file.
 
-input_name = "MRC Harwell CRISPR stock generation file ACVR2B-FLOX-INTER-EM1-B6N"
+    This function writes the process name and the current Python version into a YAML file named 'versions.yml'.
 
-output_name = input_name + "_output"
-
-input_file = input_name + ".docx"
-
-output_file = output_name + ".docx"
+    Parameters:
+    - process_name (str): A string representing the name of the process to be included in the file.
+    """
+    with open("versions.yml", "w", encoding="UTF-8") as out_f:
+        out_f.write(process_name + ":\n")
+        out_f.write("    python: " + platform.python_version() + "\n")
 
 
 def replace_text_in_paragraph(paragraph, key, value):
@@ -18,15 +23,24 @@ def replace_text_in_paragraph(paragraph, key, value):
                 item.text = item.text.replace(key, value)
 
 
-document = Document(input_file)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--process_name", default="!{process_name}")
+    parser.add_argument("--input", default="!{input}")
+    parser.add_argument("--output", default="!{output}")
+    args = parser.parse_args()
 
-for paragraph in document.paragraphs:
-    replace_text_in_paragraph(paragraph, "30 V, 3", "40 V, 3.5")
+    document = Document(args.input)
 
-for paragraph in document.paragraphs:
-    replace_text_in_paragraph(paragraph, "100 ms", "50 ms")
+    for paragraph in document.paragraphs:
+        replace_text_in_paragraph(paragraph, "30 V, 3", "40 V, 3.5")
 
-for paragraph in document.paragraphs:
-    replace_text_in_paragraph(paragraph, "12 pulses", "4 pulses (NEPA21 Type II - (NEPA Gene))")
+    for paragraph in document.paragraphs:
+        replace_text_in_paragraph(paragraph, "100 ms", "50 ms")
 
-document.save(output_file)
+    for paragraph in document.paragraphs:
+        replace_text_in_paragraph(paragraph, "12 pulses", "4 pulses (NEPA21 Type II - (NEPA Gene))")
+
+    document.save(args.output)
+
+    dump_versions(args.process_name)
