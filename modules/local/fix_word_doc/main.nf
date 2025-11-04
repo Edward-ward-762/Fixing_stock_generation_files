@@ -9,7 +9,7 @@ process fix_word_doc{
 
     output:
     tuple val(meta), path("${file.baseName}_fixed.docx"), emit: fixed
-    path "versions.yml"                                 , emit: versions
+    path "versions.yml"                                 , optional: true, emit: versions
 
     script:
     """
