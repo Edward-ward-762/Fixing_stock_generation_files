@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# import platform
 from docx import Document
 import argparse
 
