@@ -31,7 +31,7 @@ workflow{
     // ****************************
     //
 
-    ch_input = Channel.fromPath(inputFile)
+    ch_input = Channel.fromPath(params.inputFile)
                         .splitCsv(header: true)
                         .map { row ->
                             [[id: row.file_id],row.file_path]
