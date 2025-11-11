@@ -2,7 +2,7 @@
 
 process fix_word_doc{
     tag "$meta.id"
-    label 'process_single'
+    label 'process_low'
 
     input:
     tuple val(meta), path(file)

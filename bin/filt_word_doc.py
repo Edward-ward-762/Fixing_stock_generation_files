@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+
+from docx import Document
+import pandas as pd
+import platform
+
+
+def filt_input_csv(file, key):
+    output_val = False
+    temp_doc = Document(file)
+    for paragraph in temp_doc.paragraphs:
+        if key in paragraph.text:
+            output_val = True
+    return output_val
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--process_name", default="!{process_name}")
+    parser.add_argument("--input", default="!{input}")
+    parser.add_argument("--output", default="!{output}")
+    parser.add_argument("--filter_string", default="!{filter_string}")
+    args = parser.parse_args()
+
+    raw_data = pd.read_csv(args.input)
+
+    filter_value = args.filter_string
+
+    raw_data['boolean'] = raw_data['file'].map(lambda x: filt_input_csv(x, filter_value))
+
+    filtered = raw_data.loc[
+        (raw_data['boolean'] == True)
+    ].copy()
+
+    output = filtered.drop(columns='boolean').copy()
+
+    output.to_csv(args.output, index=False, header=True)

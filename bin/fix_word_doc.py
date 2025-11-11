@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-# import platform
 from docx import Document
 import argparse
 import platform
@@ -30,8 +29,8 @@ if __name__ == "__main__":
     parser.add_argument("--process_name", default="!{process_name}")
     parser.add_argument("--input", default="!{input}")
     parser.add_argument("--output", default="!{output}")
-    parser.add_argument("--original_string", default="!{output}")
-    parser.add_argument("--replacement_string", default="!{output}")
+    parser.add_argument("--original_string", default="!{original_string}")
+    parser.add_argument("--replacement_string", default="!{replacement_string}")
     args = parser.parse_args()
 
     document = Document(args.input)
