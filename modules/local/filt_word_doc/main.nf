@@ -1,7 +1,6 @@
 #!/usr/bin/env nextflow
 
-process fix_word_doc{
-    tag "$meta.id"
+process filt_word_doc{
     label 'process_single'
 
     input:

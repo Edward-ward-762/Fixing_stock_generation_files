@@ -43,6 +43,4 @@ if __name__ == "__main__":
 
     document.save(args.output)
 
-"""
-    dump_versions(args.process_name)
-"""
+   #dump_versions(args.process_name)
