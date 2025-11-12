@@ -33,11 +33,8 @@ workflow{
     //
 
     ch_input = Channel.fromPath(params.inputFile)
-        .view()
 
     ch_versions = Channel.empty()
-
-    /*
 
     //
     // ****************************
@@ -54,6 +51,8 @@ workflow{
     filt_word_doc(ch_input)
     ch_versions = ch_versions.mix(filt_word_doc.out.versions)
     ch_filtered = filt_word_doc.out.filtered
+
+    /*
 
     //
     // ****************************
