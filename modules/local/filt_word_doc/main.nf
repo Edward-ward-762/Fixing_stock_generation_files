@@ -15,7 +15,7 @@ process filt_word_doc{
     python3 $workflow.projectDir/bin/filt_word_doc.py \
         --input $file \
         --output "${file.baseName}_filtered.csv" \
-        --process_name $task.process \
-        --filter_string $params.filter_string
+        --process_name "$task.process" \
+        --filter_string "$params.filter_string"
     """
 }
