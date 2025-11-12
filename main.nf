@@ -52,10 +52,6 @@ workflow{
     ch_versions = ch_versions.mix(filt_word_doc.out.versions)
     ch_filtered = filt_word_doc.out.filtered
 
-    ch_filtered.view()
-
-    /*
-
     //
     // ****************************
     //
@@ -68,7 +64,7 @@ workflow{
     // CHANNEL: Map ch_filtered
     //
 
-    ch_filtered = ch_filtered
+    ch_filtered = Channel.fromPath(ch_filtered)
         .splitCsv(header: true)
         .map{ row ->
             [[id: row.sample_id],row.file_path]
