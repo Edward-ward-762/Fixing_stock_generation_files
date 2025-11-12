@@ -33,6 +33,7 @@ workflow{
     //
 
     ch_input = Channel.fromPath(params.inputFile)
+        .view()
 
     ch_versions = Channel.empty()
 
