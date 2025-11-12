@@ -48,9 +48,7 @@ workflow{
     // MODULE: Run filt_word_doc.py
     //
 
-    filt_word_doc(
-        ch_input.map{ file -> [file] }
-    )
+    filt_word_doc(ch_input)
     ch_versions = ch_versions.mix(filt_word_doc.out.versions)
     ch_filtered = filt_word_doc.out.filtered
 
