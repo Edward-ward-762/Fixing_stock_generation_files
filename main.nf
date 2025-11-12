@@ -64,7 +64,7 @@ workflow{
     // CHANNEL: Map ch_filtered
     //
 
-    ch_filtered = Channel.fromPath(ch_filtered)
+    ch_filtered = ch_filtered
         .splitCsv(header: true)
         .map{ row ->
             [[id: row.sample_id],row.file_path]
@@ -75,7 +75,7 @@ workflow{
     //
 
     fix_word_doc(
-        ch_input.map{ meta, file -> [meta, file] }
+        ch_filtered.map{ meta, file -> [meta, file] }
     )
     ch_versions = ch_versions.mix(fix_word_doc.out.versions)
 
