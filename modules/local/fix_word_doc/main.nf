@@ -16,8 +16,8 @@ process fix_word_doc{
     python3 $workflow.projectDir/bin/fix_word_doc.py \
         --input $file \
         --output "${file.baseName}_fixed.docx" \
-        --process_name $task.process \
-        --original_string $params.original_string \
-        --replacement_string $params.replacement_string
+        --process_name "$task.process" \
+        --original_string "$params.original_string" \
+        --replacement_string "$params.replacement_string"
     """
 }
