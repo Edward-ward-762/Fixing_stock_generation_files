@@ -38,11 +38,18 @@ if __name__ == "__main__":
     parser.add_argument("--filter_string", default="!{filter_string}")
     args = parser.parse_args()
 
+    col_headers = [
+        'sample_id',
+        'file_path'
+    ]
+
     raw_data = pd.read_csv(args.input)
+
+    raw_data.columns = col_headers
 
     filter_value = args.filter_string
 
-    raw_data['boolean'] = raw_data['file'].map(lambda x: filt_input_csv(x, filter_value))
+    raw_data['boolean'] = raw_data['file_path'].map(lambda x: filt_input_csv(x, filter_value))
 
     filtered = raw_data.loc[
         (raw_data['boolean'] == True)
