@@ -14,7 +14,7 @@
 
 include { filt_word_doc            } from './modules/local/filt_word_doc/main.nf'
 include { fix_word_doc             } from './modules/local/fix_word_doc/main.nf'
-//include { DUMP_SOFTWARE_VERSIONS } from './modules/local/dump_software_versions.nf'
+include { DUMP_SOFTWARE_VERSIONS } from './modules/local/dump_software_versions.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
