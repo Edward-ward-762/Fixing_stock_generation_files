@@ -2,7 +2,7 @@
 
 process fix_word_doc{
     tag "$meta.id"
-    label 'process_single'
+    label 'process_low'
 
     input:
     tuple val(meta), path(file)
@@ -13,6 +13,11 @@ process fix_word_doc{
 
     script:
     """
-    fix_word_doc.py --input $file --output "${file.baseName}_fixed.docx" --process_name $task.process
+    python3 $workflow.projectDir/bin/fix_word_doc.py \
+        --input $file \
+        --output "${file.baseName}_fixed.docx" \
+        --process_name "$task.process" \
+        --original_string "$params.original_string" \
+        --replacement_string "$params.replacement_string"
     """
 }
